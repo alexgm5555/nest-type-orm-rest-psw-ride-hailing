@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateCarDto } from './dto/create-car.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Car } from './entities/car.entity';
-import { DataSource, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { getDataByEmail } from 'src/utils/crudFunctions';
 
@@ -26,6 +26,7 @@ export class CarsService {
       this.handleDBExeptions(error);
     }
   }
+
   handleDBExeptions(error: any) {
     throw new Error('Method not implemented.');
   }

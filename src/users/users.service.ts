@@ -6,6 +6,7 @@ import { User } from './entities/user.entity';
 import { Role } from 'src/roles/entities/role.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { getDataByEmail } from 'src/utils/crudFunctions';
 
 @Injectable()
 export class UsersService {
@@ -32,8 +33,12 @@ export class UsersService {
     return `This action returns all users`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOnebyId(id: string) {
+    return await getDataById(id, this.userRepository )
+  }
+
+  async findOnebyEmail(userEmail: string) {
+    return await getDataByEmail(userEmail, this.userRepository )
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

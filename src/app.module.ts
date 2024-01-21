@@ -8,6 +8,7 @@ import { RolesModule } from './roles/roles.module';
 import { CarsModule } from './cars/cars.module';
 import { SeedModule } from './seed/seed.module';
 import { RoutesdoneModule } from './routesdone/routesdone.module';
+import { RideModule } from './ride/ride.module';
 
 
 
@@ -22,6 +23,7 @@ import { RoutesdoneModule } from './routesdone/routesdone.module';
     CarsModule,
     SeedModule,
     RoutesdoneModule,
+    RideModule,
   ],
   controllers: [],
   providers: [],

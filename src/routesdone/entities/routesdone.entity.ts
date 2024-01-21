@@ -1,8 +1,9 @@
 
 
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, Point, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
 import { User } from "src/users/entities/user.entity";
+import { Car } from "src/cars/entities/car.entity";
 
 @Entity()
 export class Routesdone {
@@ -10,39 +11,41 @@ export class Routesdone {
   id: string = uuid();
 
   @Column('text',
-    {default: ''}
+    {default: 'active'}
   )
   state: string;
 
   @Column('text',
-    {default: ''}
+    {
+      array: true,
+      default: []
+    }
   )
-  locationIni: string;
+  locationIni: number[];
 
   @Column('text',
-    {default: ''}
+    {
+      array: true,
+      default: []
+    }
   )
-  locationEnd: string;
+  locationEnd: number[];
 
   @Column('float',
     {default: 0}
   )
-  km: number;
+  ridesKm: number;
 
   @Column('float',
     {default: 0}
   )
-  value: number;
+  ridesValue: number;
 
-  @Column('text',
-    {default: ''}
-  )
-  timeIni: string;
+  @Column({ type: 'timestamp', default: '1000-01-01 00:00:00' })
+  timeIni: Date;
 
-  @Column('text',
-    {default: ''}
-  )
-  timeEnd: string;
+  @Column({ type: 'timestamp', default: '1000-01-01 00:00:00'})
+  timeEnd: Date;
 
   @Column('text',
     {default: ''}
@@ -65,4 +68,10 @@ export class Routesdone {
     eager: true,
   })
   userRider: User;
+
+  @ManyToOne(() => Car, (car) => car.routesdones, {
+    cascade: true,
+    eager: true,
+  })
+  car: Car;
 }

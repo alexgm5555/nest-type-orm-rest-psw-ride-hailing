@@ -1,7 +1,8 @@
 
-import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
 import { User } from "src/users/entities/user.entity";
+import { Routesdone } from "src/routesdone/entities/routesdone.entity";
 
 @Entity()
 export class Car {
@@ -27,4 +28,7 @@ export class Car {
     onDelete: 'CASCADE',
   })
   user: User;
+
+  @OneToMany(() => Routesdone, (routesdone) => routesdone.car)
+  routesdones?: Routesdone[];
 }

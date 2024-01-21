@@ -30,8 +30,15 @@ export class CarsService {
   handleDBExeptions(error: any) {
     throw new Error('Method not implemented.');
   }
+  
 
   findOne(id: number) {
     return `This action returns a #${id} car`;
+  }
+
+  async findAllCars() {
+    return await this.carRepository.find({
+      relations: ['user']
+    });
   }
 }

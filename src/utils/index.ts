@@ -2,6 +2,8 @@ export {
   updateCode,
   getDataById,
   ownNotFoundException,
-  deleteCode
+  deleteCode,
+  handleDBErrors
 } from './crudFunctions';
 export { getTodayFormat } from './dateFunctions';
+export { distanceKm } from './distanceBettTwoPints';

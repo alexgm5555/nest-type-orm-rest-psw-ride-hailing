@@ -1,4 +1,4 @@
-import { NotFoundException } from "@nestjs/common";
+import { BadRequestException, InternalServerErrorException, NotFoundException } from "@nestjs/common";
 
 /**
  * Function to preccharge new data to update register
@@ -89,6 +89,14 @@ export const getDataByEmail = async (
 export const ownNotFoundException = (id: string, register: any, ) => {
   if (!register)
       throw new NotFoundException(`Item with id: ${id} not found`);
+}
+
+export  const handleDBErrors= (error: any): never => { // el never fuerza a que jamas de un return en el metodo
+  if (error.code === 23505)
+    throw new BadRequestException(error.detail);
+  console.log(error);
+  throw new InternalServerErrorException('Please check Server logs');
+    
 }
 
 

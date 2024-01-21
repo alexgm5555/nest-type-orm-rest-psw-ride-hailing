@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { RoutesdoneService } from './routesdone.service';
 import { CreateRoutesdoneDto } from './dto/create-routesdone.dto';
 import { UpdateRoutesdoneDto } from './dto/update-routesdone.dto';
@@ -7,10 +7,6 @@ import { UpdateRoutesdoneDto } from './dto/update-routesdone.dto';
 export class RoutesdoneController {
   constructor(private readonly routesdoneService: RoutesdoneService) {}
 
-  @Post()
-  create(@Body() createRoutesdoneDto: CreateRoutesdoneDto) {
-    return this.routesdoneService.create(createRoutesdoneDto);
-  }
 
   @Get()
   findAll() {

@@ -11,7 +11,7 @@ const postgresDB: DataSourceOptions = {
   // autoLoadEntities: true,
   entities: [`${process.env.DB_MIGRATION === 'true'?"src":"dist"}/**/*.entity{.ts,.js}`],
   logging: true,
-  synchronize: process.env.DB_NAME === 'true', // Esto crea las tablas automáticamente (en producción, establecer en false)
+  synchronize: process.env.DB_SYNC === 'true', // Esto crea las tablas automáticamente (en producción, establecer en false)
   migrationsTableName: "migrations",
   migrations: ['./db/migrations/*.ts'],
   ssl: {

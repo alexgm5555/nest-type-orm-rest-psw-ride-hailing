@@ -4,7 +4,10 @@ import { User } from "src/users/entities/user.entity";
 
 @Entity()
 export class Role {
-  @PrimaryColumn('uuid')
+  @PrimaryColumn('text' ,
+  {
+    unique: true
+  })
   id: string;
 
   @Column('text' ,

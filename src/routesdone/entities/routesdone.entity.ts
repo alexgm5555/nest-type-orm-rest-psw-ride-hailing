@@ -1,17 +1,13 @@
 
+
 import { Column, Entity, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
 import { User } from "src/users/entities/user.entity";
 
 @Entity()
-export class Transaction {
+export class Routesdone {
   @PrimaryColumn('uuid')
   id: string = uuid();
-
-  @Column('bool',{
-    default: true,
-  })
-  active?: Boolean;
 
   @Column('text',
     {default: ''}
@@ -28,15 +24,16 @@ export class Transaction {
   )
   locationEnd: string;
 
-  @Column('number',
+  @Column('float',
     {default: 0}
   )
   km: number;
 
-  @Column('number',
+  @Column('float',
     {default: 0}
   )
   value: number;
+
   @Column('text',
     {default: ''}
   )
@@ -47,13 +44,23 @@ export class Transaction {
   )
   timeEnd: string;
 
-  @ManyToOne(() => User, (user) => user.transactionsDriver, {
+  @Column('text',
+    {default: ''}
+  )
+  idPaid: string;
+
+  @Column('text',
+    {default: ''}
+  )
+  idFront: string;
+
+  @ManyToOne(() => User, (user) => user.routesdoneDriver, {
     cascade: true,
     eager: true,
   })
   userDriver: User;
 
-  @ManyToOne(() => User, (user) => user.transactionsRider, {
+  @ManyToOne(() => User, (user) => user.routesdoneRider, {
     cascade: true,
     eager: true,
   })

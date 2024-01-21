@@ -2,8 +2,8 @@
 import { BeforeInsert, BeforeUpdate, Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 import { v4 as uuid } from 'uuid';
 import { Role } from "src/roles/entities/role.entity";
-import { Transaction } from "src/transactions/entities/transaction.entity";
 import { Car } from "src/cars/entities/car.entity";
+import { Routesdone } from "src/routesdone/entities/routesdone.entity";
 
 @Entity()
 export class User {
@@ -30,17 +30,27 @@ export class User {
   })
   phone: string;
 
+  @Column('text', {
+    default: '',
+  })
+  tokenPayment: string;
+
+  @Column('text', {
+    default: '',
+  })
+  idNumber: string;
+
   @ManyToOne(() => Role, (role) => role.users, {
     cascade: true,
     eager: true,
   })
   role: Role;
 
-  @OneToMany(() => Transaction, (transaction) => transaction.userDriver)
-  transactionsDriver?: Transaction[];
+  @OneToMany(() => Routesdone, (routesdone) => routesdone.userDriver)
+  routesdoneDriver?: Routesdone[];
 
-  @OneToMany(() => Transaction, (transaction) => transaction.userRider)
-  transactionsRider?: Transaction[];
+  @OneToMany(() => Routesdone, (routesdone) => routesdone.userRider)
+  routesdoneRider?: Routesdone[];
 
   @OneToMany(() => Car, (car) => car.user)
   cars?: Car[];

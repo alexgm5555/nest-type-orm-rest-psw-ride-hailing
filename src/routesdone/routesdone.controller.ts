@@ -20,7 +20,7 @@ export class RoutesdoneController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRoutesdoneDto: UpdateRoutesdoneDto) {
-    return this.routesdoneService.update(+id, updateRoutesdoneDto);
+    return this.routesdoneService.update(id, updateRoutesdoneDto);
   }
 
   @Delete(':id')

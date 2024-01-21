@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateRoutesdoneDto } from './dto/create-routesdone.dto';
 import { UpdateRoutesdoneDto } from './dto/update-routesdone.dto';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { getDataById, getTodayFormat, handleDBErrors} from 'src/utils';
+import { getDataById, getTodayFormat, handleDBErrors, updateCode} from 'src/utils';
 import { Routesdone } from './entities/routesdone.entity';
 import { User } from 'src/users/entities/user.entity';
 import { Car } from 'src/cars/entities/car.entity';
@@ -62,8 +62,14 @@ export class RoutesdoneService {
     return await getDataById(id, this.RoutesdoneRepository )
   }
 
-  update(id: number, updateRoutesdoneDto: UpdateRoutesdoneDto) {
-    return `This action updates a #${id} routesdone`;
+  async update(id: string, updateRoutesdoneDto: UpdateRoutesdoneDto) {
+    let { ...toUpdate } = updateRoutesdoneDto;
+    const route = await updateCode(
+      id,
+      toUpdate,
+      this.RoutesdoneRepository
+    );
+    return this.RoutesdoneRepository.save(route);
   }
 
   remove(id: number) {

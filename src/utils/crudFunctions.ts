@@ -16,7 +16,7 @@ export const updateCode = async (
       id,
       ...toUpdate
     });
-    console.log(register);
+    
     
     ownNotFoundException(id, register);
     return register

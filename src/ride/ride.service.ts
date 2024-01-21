@@ -6,7 +6,7 @@ import { Car } from 'src/cars/entities/car.entity';
 import { Repository } from 'typeorm';
 import { User } from 'src/users/entities/user.entity';
 import { Routesdone } from 'src/routesdone/entities/routesdone.entity';
-import { getDataByEmail, getDataById, handleDBErrors } from 'src/utils/crudFunctions';
+import { getTodayFormat } from 'src/utils';
 import { distanceKm } from 'src/utils';
 import { RoutesdoneService } from 'src/routesdone/routesdone.service';
 import { CarsService } from 'src/cars/cars.service';
@@ -67,17 +67,30 @@ export class RideService {
     }
   }
 
-  async start(id: string, updateRideDto: UpdateRideDto) {
+  async start(id: string) {
     try {
-      
+      const routesdoneData = await this.routesdoneService.update(
+        id,
+        { timeIni: getTodayFormat() }
+      );
+      return { ride: routesdoneData }
     } catch (error) {
       console.log('RideService.start');
       return error
     }
   }
 
-  end(updateRideDto: UpdateRideDto) {
-    return 'This action adds a new ride';
+  async end(id: string) {
+    try {
+      const routesdoneData = await this.routesdoneService.update(
+        id,
+        { timeEnd: getTodayFormat() }
+      );
+      return { ride: routesdoneData }
+    } catch (error) {
+      console.log('RideService.end');
+      return error
+    }
   }
 
   create(createRideDto: CreateRideDto) {

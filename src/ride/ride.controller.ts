@@ -15,24 +15,27 @@ export class RideController {
     return this.rideService.request(createRideDto);
   }
 
-  @Get(':id')
-  async findOne(
-    // @Param('id', ParseUUIDPipe) id: string
-    @Param('id') id: string
-    ) {
-    return this.rideService.findOne(id);
-  }
+  // @Get(':id')
+  // async findOne(
+  //   // @Param('id', ParseUUIDPipe) id: string
+  //   @Param('id') id: string
+  //   ) {
+  //   console.log(id);
+  //   return this.rideService.findOne(id);
+  // }
 
-  @Patch('start:id')
-  start(@Param('id') id: string, @Body() updateRideDto: UpdateRideDto) {
+  @Patch('start/:id')
+  start(@Param('id') id: string, ) {
     console.log('post: start:id');
-    console.log(updateRideDto);
-    return this.rideService.start(id, updateRideDto);
+    console.log(id);
+    return this.rideService.start(id);
   }
 
-  @Patch('end:id')
-  end(@Param('id') id: string, @Body() updateRideDto: UpdateRideDto) {
-    return this.rideService.update(id, updateRideDto);
+  @Patch('end/:id')
+  end(@Param('id') id: string, ) {
+    console.log('post: start:id');
+    console.log(id);
+    return this.rideService.end(id);
   }
 
   // @Delete(':id')

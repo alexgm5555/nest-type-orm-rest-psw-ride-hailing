@@ -82,11 +82,38 @@ export class RideService {
 
   async end(id: string) {
     try {
-      const routesdoneData = await this.routesdoneService.update(
+      let routesdoneData = await this.routesdoneService.update(
         id,
         { timeEnd: getTodayFormat() }
       );
-      return { ride: routesdoneData }
+      const locationIni = routesdoneData.locationIni;
+      const locationEnd = routesdoneData.locationEnd;
+      const time = this.calMin(
+        routesdoneData.timeIni,
+        routesdoneData.timeEnd
+      );
+      
+      const { ridesKm, ridesValue } = this.getRidesValue({
+        latIni: locationIni[0],
+        longIni: locationIni[1],
+        latEnd: locationEnd[0],
+        longEnd: locationEnd[1],
+        time
+      });
+      if (routesdoneData.price !== ridesValue) {
+        routesdoneData = await this.routesdoneService.update(
+          id,
+          { ridesValue: ridesValue }
+        );
+      }
+      return {
+        ride: {
+          id: routesdoneData.id,
+          distance: ridesKm,
+          price: ridesValue,
+          minutes: time,
+        }
+      }
     } catch (error) {
       console.log('RideService.end');
       return error
@@ -129,16 +156,23 @@ export class RideService {
     if(time && time > currentTime) {
       ridesValue = ((time-currentTime) * +process.env.BL_VALUE_MINUTE);
     };
-
     ridesValue = ridesValue +
       +process.env.BL_VALUE_BASE_FEE +
       (ridesKm * +process.env.BL_VALUE_KM);
-
+    
+    ridesValue= Math.round(ridesValue);
+    
     return { ridesKm, ridesValue }
   }
 
   private calcTime(distance: number){
     return (60*distance)/+process.env.BL_SPEED_PER_HOUR;
-    
+  }
+
+  private calMin = (fechaIni: string, fechaEnd: string)=>{
+    let fecha1 = new Date(fechaIni);
+    let fecha2 = new Date(fechaEnd);
+    let diferencia = fecha2.getTime() - fecha1.getTime();
+    return Math.round(diferencia / 1000 / 60);
   }
 }

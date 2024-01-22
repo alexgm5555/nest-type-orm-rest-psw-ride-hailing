@@ -40,7 +40,11 @@ export class SeedService {
 
   private async deleteTables() {
     await  this.routesdoneRepository.clear()
-    await  this.carRepository.clear();
+    const queryBuilderCar = this.carRepository.createQueryBuilder();
+    await queryBuilderCar
+    .delete()
+    .where({})
+    .execute()
     const queryBuilderUser = this.userRepository.createQueryBuilder();
     await queryBuilderUser
     .delete()

@@ -2,72 +2,98 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
+<p align="center">
+  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+This project was generated with the framework nest.js
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
+## Despliegue
+1. If you want ro clone this project, please execute this code in your terminal:
 ```bash
-$ npm install
+git clone https://github.com/alexgm5555/nest-type-orm-rest-psw-ride-hailing
+```
+2. To install Dependencies
+```bash
+npm  install
+```
+3. This project has a env. file, what it will give into the email to respective verification an other instrucctions.
+4. To Deploy this proyect in local enviroment it is neccesary download docker Desktop(https://www.docker.com/products/docker-desktop/)
+5. To deploy data base server whit follow comands (postgres DB)
+```bash
+docker-compose up -d
+```
+6. Deploy proyect developmen enviroment
+```bash
+npm run start:dev
 ```
 
-## Running the app
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+## EndPoint
+1. The EndPoint enables:
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+GET  https://prueba-tecnica-alexander-guiza.onrender.com/seed // reate mockdata
+POST https://prueba-tecnica-alexander-guiza.onrender.com/ride/request  //generate a new request
 ```
+{request}
+``` 
+  {
+    "latIni": 4.693826,
+    "longIni":-74.10675,
+    "latEnd": 4.646318214596056,
+    "longEnd":-74.06731779538278,
+    "userEmail":"test2@alex.co"
+  }
+```
+{response}
+``` 
+  {
+    "ride": {
+        "id": "7446d0bd-cd33-4b75-a35b-14ea29bd02ed",
+        "distance": 7,
+        "price": 10500,
+        "driversName": "test1FName",
+        "placa": "AAA111",
+        "carsColor": "black"
+    }
+  }
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/start/{id} //Start ride
+PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/start/7446d0bd-cd33-4b75-a35b-14ea29bd02ed
+```
+{response}
+``` 
+{
+    "ride": {
+        "id": "7446d0bd-cd33-4b75-a35b-14ea29bd02ed",
+        "state": "active",
+        "locationIni": [
+            "4.693826",
+            "-74.10675"
+        ],
+        "locationEnd": [
+            "4.646318214596056",
+            "-74.06731779538278"
+        ],
+        "ridesKm": 7,
+        "ridesValue": 10500,
+        "timeIni": "2024-01-21 21:50:18",
+        "timeEnd": "1000-01-01T00:00:00.000Z",
+        "idPaid": "",
+        "idFront": ""
+    }
+}
+PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/end/{id} //End ride
+PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/end/7446d0bd-cd33-4b75-a35b-14ea29bd02ed
+```
+{response}
+``` 
+  {
+    "ride": {
+      "id": "7446d0bd-cd33-4b75-a35b-14ea29bd02ed",
+      "distance": 7,
+      "price": 10500,
+      "minutes": 1
+    }
+  }
+```

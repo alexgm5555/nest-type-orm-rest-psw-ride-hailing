@@ -2,13 +2,9 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
 This project was generated with the framework nest.js
 
-## Despliegue
+## Deploy
 1. If you want ro clone this project, please execute this code in your terminal:
 ```bash
 git clone https://github.com/alexgm5555/nest-type-orm-rest-psw-ride-hailing
@@ -33,10 +29,12 @@ npm run start:dev
 1. The EndPoint enables:
 ```
 GET  https://prueba-tecnica-alexander-guiza.onrender.com/seed // reate mockdata
-POST https://prueba-tecnica-alexander-guiza.onrender.com/ride/request  //generate a new request
 ```
-{request}
-``` 
+```
+POST https://prueba-tecnica-alexander-guiza.onrender.com/ride/request  //generate a new request
+
+request
+
   {
     "latIni": 4.693826,
     "longIni":-74.10675,
@@ -44,9 +42,9 @@ POST https://prueba-tecnica-alexander-guiza.onrender.com/ride/request  //generat
     "longEnd":-74.06731779538278,
     "userEmail":"test2@alex.co"
   }
-```
-{response}
-``` 
+
+response
+
   {
     "ride": {
         "id": "7446d0bd-cd33-4b75-a35b-14ea29bd02ed",
@@ -57,12 +55,13 @@ POST https://prueba-tecnica-alexander-guiza.onrender.com/ride/request  //generat
         "carsColor": "black"
     }
   }
-
+```
+```
 PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/start/{id} //Start ride
 PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/start/7446d0bd-cd33-4b75-a35b-14ea29bd02ed
-```
-{response}
-``` 
+
+response
+ 
 {
     "ride": {
         "id": "7446d0bd-cd33-4b75-a35b-14ea29bd02ed",
@@ -83,11 +82,12 @@ PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/start/7446d0bd-cd
         "idFront": ""
     }
 }
+```
+```
 PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/end/{id} //End ride
 PATCH https://prueba-tecnica-alexander-guiza.onrender.com/ride/end/7446d0bd-cd33-4b75-a35b-14ea29bd02ed
-```
-{response}
-``` 
+
+response
   {
     "ride": {
       "id": "7446d0bd-cd33-4b75-a35b-14ea29bd02ed",

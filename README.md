@@ -99,8 +99,12 @@ response
   }
 ```
 Tools
-DB  -> Postgres
-ORM -> Type Orm
-typescript
-Docker 
+1. DB  -> Postgres
+2. ORM -> Type Orm
+3. typescript
+4. Docker 
+5. Deploy Onrender 
+```
+https://prueba-tecnica-alexander-guiza.onrender.com
+```
 

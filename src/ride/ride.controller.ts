@@ -15,15 +15,6 @@ export class RideController {
     return this.rideService.request(createRideDto);
   }
 
-  // @Get(':id')
-  // async findOne(
-  //   // @Param('id', ParseUUIDPipe) id: string
-  //   @Param('id') id: string
-  //   ) {
-  //   console.log(id);
-  //   return this.rideService.findOne(id);
-  // }
-
   @Patch('start/:id')
   start(@Param('id') id: string, ) {
     console.log('post: start:id');
@@ -37,9 +28,4 @@ export class RideController {
     console.log(id);
     return this.rideService.end(id);
   }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.rideService.remove(+id);
-  // }
 }

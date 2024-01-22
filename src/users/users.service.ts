@@ -29,24 +29,12 @@ export class UsersService {
     }
   }
 
-  findAll() {
-    return `This action returns all users`;
-  }
-
   async findOnebyId(id: string) {
     return await getDataById(id, this.userRepository )
   }
 
   async findOnebyEmail(userEmail: string) {
     return await getDataByEmail(userEmail, this.userRepository )
-  }
-
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} user`;
   }
 
   handleDBExeptions(error: any) {

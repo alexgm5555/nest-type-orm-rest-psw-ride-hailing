@@ -120,26 +120,6 @@ export class RideService {
     }
   }
 
-  create(createRideDto: CreateRideDto) {
-    return 'This action adds a new ride';
-  }
-
-  findAll() {
-    return `This action returns all ride`;
-  }
-
-  findOne(id: string) {
-    return `This action returns a #${id} ride`;
-  }
-
-  update(id: string, updateRideDto: UpdateRideDto) {
-    return `This action updates a #${id} ride`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} ride`;
-  }
-
   private getRidesValue({latIni,longIni,latEnd,longEnd, time}:{
     latIni: number;
     longIni: number;

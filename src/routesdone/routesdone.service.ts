@@ -50,14 +50,6 @@ export class RoutesdoneService {
     }
   }
 
-  findAll() {
-    return `This action returns all routesdone`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} routesdone`;
-  }
-
   async findOnebyId(id: string) {
     return await getDataById(id, this.RoutesdoneRepository )
   }
@@ -72,7 +64,4 @@ export class RoutesdoneService {
     return this.RoutesdoneRepository.save(route);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} routesdone`;
-  }
 }
